@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Modificando HTML #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <script src='js/jquery.js'></script>
+</head>
+
+<body class='conteudo exercicio'>
+    <h1>Modificando HTML #02</h1>
+    <div id='div1'>1</div>
+    <div id='div2'>2</div>
+    <div id='div3'>3</div>
+    <p class='numero'>4</p>
+    <p class='numero'>5</p>
+
+    <script>
+        $('#div1').append(', 2')
+        $('#div1').prepend('0, ')
+
+        //append o span para a #div1
+        $('<span>, 3</span>').appendTo('#div1') 
+
+         //prepend para #div1
+        $('<span>-1, </span>').prependTo('#div1')
+
+        $('#div2').before('<p>Antes 2</p>')
+        $('#div2').after('<p>Depois 2</p>')
+
+        $('<p>Antes 3</p>').insertBefore('#div3')
+        $('<p>Depois 3</p>').insertAfter('#div3')
+
+        //envolver os parágrafos com uma div
+        //$('p.numero').wrap('<div>')
+
+        //alem de criar uma div com o id "div4", 
+        //pega tudo que selecionou e envolve com uma única div os elementos (p.numero)
+        $('p.numero').wrapAll('<div id="div4">')
+
+        //limpa o conteúdo da div
+        $("#div4").empty()
+        
+        //remove os anteriores da div4
+        $('#div3, #div4').prev().remove()
+
+        //substituir todos os paragrafos que estao dentro do body
+        //$('<div>Substituto</div>').replaceAll('body > p')
+
+        //primeiro seleciona, depois substitui
+        //$('body > p').replaceWith('<div>Substituto</div>')
+
+        //passando uma função callback()
+        $('body > p').replaceWith(function() {
+            return $('<div>').html($(this).html()).append('!!!') //o html do elemento atual está sendo colocado dentro do html da <div> que foi criada
+        })
+    </script>
+</body>
