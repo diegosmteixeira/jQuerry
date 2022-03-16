@@ -13,13 +13,29 @@
     <div id='conteudo'></div>
 
     <script>
-        const pessoas = [
+
+    //função será chamada quando o documento estiver pronto
+    //outra forma é passar uma callback $(function() { documento aqui })
+    $(document).ready(function() {
+        const alunos = [
             { nome: 'Ana', nota: 9.1 },
             { nome: 'Bianca', nota: 8.4 },
             { nome: 'Carlos', nota: 7.6 },
             { nome: 'Julia', nota: 9.7 }
         ]
-        
-        // ...
+
+        const linhas = alunos.map(alunos => {
+            const tdNome = $('<td>').html(alunos.nome)
+            const tdNota = $('<td>').html(alunos.nota)
+            //return $('<tr>').append(tdNome).append(tdNota)
+            //return $('<tr>').append([tdNome, tdNota])
+            return $('<tr>').append(tdNome, tdNota)
+        })
+
+        const tabela = $('<table>').append(linhas)
+            .css('border', 'solid 5px')
+        $('#conteudo').append(tabela)
+    })
+
     </script>
 </body>
